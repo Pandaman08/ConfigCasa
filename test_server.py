@@ -34,6 +34,10 @@ class OfflineRequirementsTests(unittest.TestCase):
         value = local_interpret("casa moderna de dos pisos sobre terreno 10 x 20 con tres dormitorios y dos baños")
         self.assertEqual((value["width"], value["length"], value["floors"], value["bedrooms"], value["baths"]), (10, 20, 2, 3, 2))
 
+    def test_spanish_number_words_are_parsed(self):
+        value = local_interpret("casa de dos niveles con cinco dormitorios y tres baños")
+        self.assertEqual((value["floors"], value["bedrooms"], value["baths"]), (2, 5, 3))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -89,7 +89,7 @@ class Handler(SimpleHTTPRequestHandler):
         if not token:
             return None
         digest = hashlib.sha256(token.encode()).hexdigest()
-        row = db.execute("SELECT users.id, users.email, users.role FROM sessions JOIN users ON users.id=sessions.user_id WHERE sessions.token_hash=? AND sessions.expires_at>?", (digest, int(time.time()))).fetchone()
+        row = db.execute("SELECT users.id, users.name, users.email, users.role FROM sessions JOIN users ON users.id=sessions.user_id WHERE sessions.token_hash=? AND sessions.expires_at>?", (digest, int(time.time()))).fetchone()
         return dict(row) if row else None
 
     def require_user(self, db):
@@ -141,7 +141,7 @@ class Handler(SimpleHTTPRequestHandler):
             if path == "/api/users":
                 if user["role"] != "admin":
                     return self.error("Se requiere el rol administrador", 403)
-                rows = db.execute("SELECT id,email,role,created_at FROM users ORDER BY created_at").fetchall()
+                rows = db.execute("SELECT id,name,email,role,created_at FROM users ORDER BY created_at").fetchall()
                 return self.send_json({"users": [dict(r) for r in rows]})
             if path == "/api/projects":
                 rows = db.execute("SELECT id,name,updated_at FROM projects WHERE owner_id=? ORDER BY updated_at DESC", (user["id"],)).fetchall()
@@ -170,17 +170,22 @@ class Handler(SimpleHTTPRequestHandler):
         except (ValueError, json.JSONDecodeError) as exc:
             return self.error(str(exc))
         if path in ("/api/auth/register", "/api/auth/login"):
+            name = re.sub(r"\s+", " ", str(data.get("name", "")).strip())[:80]
             email = str(data.get("email", "")).strip().lower()
             password = data.get("password", "")
-            if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email) or len(password) < 10:
-                return self.error("Usa un correo válido y una contraseña de al menos 10 caracteres")
+            if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email):
+                return self.error("Ingresa un correo electrónico válido")
+            if path.endswith("register") and (len(name) < 2 or len(password) < 10):
+                return self.error("Ingresa tu nombre y una contraseña de al menos 10 caracteres")
+            if len(password) < 10:
+                return self.error("La contraseña debe tener al menos 10 caracteres")
             with connect() as db:
                 if path.endswith("register"):
                     if db.execute("SELECT 1 FROM users WHERE email=?", (email,)).fetchone():
                         return self.error("Ese correo ya tiene una cuenta", 409)
                     first = db.execute("SELECT COUNT(*) FROM users").fetchone()[0] == 0
                     user_id = str(uuid.uuid4())
-                    db.execute("INSERT INTO users VALUES(?,?,?,?,?)", (user_id, email, encode_password(password), "admin" if first else "client", now()))
+                    db.execute("INSERT INTO users (id,name,email,password_hash,role,created_at) VALUES(?,?,?,?,?,?)", (user_id, name, email, encode_password(password), "admin" if first else "client", now()))
                 else:
                     row = db.execute("SELECT id,password_hash FROM users WHERE email=?", (email,)).fetchone()
                     if not row or not check_password(password, row["password_hash"]):
@@ -188,7 +193,7 @@ class Handler(SimpleHTTPRequestHandler):
                     user_id = row["id"]
                 token = secrets.token_urlsafe(32)
                 db.execute("INSERT INTO sessions VALUES(?,?,?)", (hashlib.sha256(token.encode()).hexdigest(), user_id, int(time.time()) + SESSION_TTL))
-                user = db.execute("SELECT id,email,role FROM users WHERE id=?", (user_id,)).fetchone()
+                user = db.execute("SELECT id,name,email,role FROM users WHERE id=?", (user_id,)).fetchone()
             return self.send_json({"user": dict(user)}, 200, {"Set-Cookie": f"casalab_session={token}; HttpOnly; SameSite=Strict; Path=/; Max-Age={SESSION_TTL}"})
         if path == "/api/auth/logout":
             with connect() as db:

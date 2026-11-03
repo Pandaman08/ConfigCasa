@@ -32,7 +32,7 @@ def initialize():
     with connect() as db:
         db.executescript("""
         CREATE TABLE IF NOT EXISTS users (
-            id TEXT PRIMARY KEY, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL,
+            id TEXT PRIMARY KEY, name TEXT NOT NULL DEFAULT '', email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL,
             role TEXT NOT NULL CHECK(role IN ('admin','designer','client')), created_at TEXT NOT NULL
         );
         CREATE TABLE IF NOT EXISTS sessions (
@@ -50,6 +50,9 @@ def initialize():
         );
         CREATE INDEX IF NOT EXISTS versions_project ON versions(project_id, sequence DESC);
         """)
+        columns = {row[1] for row in db.execute("PRAGMA table_info(users)").fetchall()}
+        if "name" not in columns:
+            db.execute("ALTER TABLE users ADD COLUMN name TEXT NOT NULL DEFAULT ''")
     calibration_file = DATA_ROOT / "calibration.json"
     if calibration_file.exists():
         try:

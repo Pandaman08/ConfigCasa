@@ -9,17 +9,22 @@ import urllib.request
 def local_interpret(text):
     """Extracción offline acotada; las dimensiones se validan antes de crear geometría."""
     t = text.lower()
+    number_words = {"un": 1, "una": 1, "uno": 1, "dos": 2, "tres": 3, "cuatro": 4, "cinco": 5, "seis": 6, "siete": 7, "ocho": 8, "nueve": 9, "diez": 10}
     def first(pattern, default):
         match = re.search(pattern, t)
-        return int(match.group(1)) if match else default
+        if not match:
+            return default
+        token = match.group(1)
+        return int(token) if token.isdigit() else number_words.get(token, default)
     lot = re.search(r"(\d+(?:\.\d+)?)\s*(?:m\s*)?(?:×|x|por)\s*(\d+(?:\.\d+)?)", t)
+    floors = first(r"(\d+|un|una|uno|dos|tres|cuatro)\s*(?:pisos|niveles)", 2 if re.search(r"dos\s+(?:pisos|niveles)", t) else 1)
     return {
         "name": "Casa personalizada",
         "width": min(30, max(6, float(lot.group(1)) if lot else 10)),
         "length": min(40, max(8, float(lot.group(2)) if lot else 20)),
-        "floors": min(3, max(1, first(r"(\d+)\s*(?:pisos|niveles)", 2 if re.search(r"dos\s+(?:pisos|niveles)", t) else 1))),
-        "bedrooms": min(10, max(1, first(r"(\d+)\s*(?:dormitorios|dormitorio|habitaciones|habitaci[oó]n)", 3))),
-        "baths": min(8, max(1, first(r"(\d+)\s*baños?", 2))),
+        "floors": min(3, max(1, floors)),
+        "bedrooms": min(10, max(1, first(r"(\d+|un|una|uno|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez)\s*(?:dormitorios|dormitorio|habitaciones|habitaci[oó]n)", 3))),
+        "baths": min(8, max(1, first(r"(\d+|un|una|uno|dos|tres|cuatro|cinco|seis|siete|ocho)\s*baños?", 2))),
         "style": "moderno" if "modern" in t else "contemporáneo",
         "budget": None,
         "questions": [],
