@@ -1,0 +1,175 @@
+{
+  "demo": {
+    "id": "demo",
+    "name": "Casa personalizada",
+    "width": 10,
+    "length": 20,
+    "floors": 2,
+    "bedrooms": 3,
+    "baths": 2,
+    "rooms": 8,
+    "area": 148,
+    "facade": "#d9d0bc",
+    "components": [
+      {
+        "id": "house",
+        "name": "Vivienda",
+        "type": "building",
+        "x": -3.4000000000000004,
+        "z": -4.4,
+        "w": 6.800000000000001,
+        "d": 11,
+        "h": 2.8,
+        "y": 0,
+        "color": "#d9d0bc"
+      },
+      {
+        "id": "upper",
+        "name": "Segundo nivel",
+        "type": "floor",
+        "x": -2.7,
+        "z": -3,
+        "w": 5.4,
+        "d": 7.800000000000001,
+        "h": 2.5,
+        "y": 2.8,
+        "color": "#ece8df"
+      },
+      {
+        "id": "garage",
+        "name": "Cochera",
+        "type": "garage",
+        "x": 0.5,
+        "z": 2.6,
+        "w": 2.9,
+        "d": 4.8,
+        "h": 0.25,
+        "y": 0,
+        "color": "#aab5aa"
+      },
+      {
+        "id": "garden",
+        "name": "Jardín",
+        "type": "garden",
+        "x": -2,
+        "z": 6.2,
+        "w": 4,
+        "d": 3.2,
+        "h": 0.08,
+        "y": 0,
+        "color": "#8fa88a"
+      },
+      {
+        "id": "window1",
+        "name": "Ventanal",
+        "type": "window",
+        "x": 3.41,
+        "z": -2.6,
+        "w": 0.08,
+        "d": 3.8,
+        "h": 1.05,
+        "y": 0.8,
+        "color": "#77a8af"
+      },
+      {
+        "id": "window2",
+        "name": "Ventanal superior",
+        "type": "window",
+        "x": 2.71,
+        "z": -1.6,
+        "w": 0.08,
+        "d": 2.8000000000000003,
+        "h": 0.9,
+        "y": 3.5,
+        "color": "#83afb2"
+      }
+    ],
+    "model": {
+      "id": "demo",
+      "name": "Casa personalizada",
+      "width": 10,
+      "length": 20,
+      "floors": 2,
+      "bedrooms": 3,
+      "baths": 2,
+      "rooms": 8,
+      "area": 148,
+      "facade": "#d9d0bc",
+      "components": [
+        {
+          "id": "house",
+          "name": "Vivienda",
+          "type": "building",
+          "x": -3.4000000000000004,
+          "z": -4.4,
+          "w": 6.800000000000001,
+          "d": 11,
+          "h": 2.8,
+          "y": 0,
+          "color": "#d9d0bc"
+        },
+        {
+          "id": "upper",
+          "name": "Segundo nivel",
+          "type": "floor",
+          "x": -2.7,
+          "z": -3,
+          "w": 5.4,
+          "d": 7.800000000000001,
+          "h": 2.5,
+          "y": 2.8,
+          "color": "#ece8df"
+        },
+        {
+          "id": "garage",
+          "name": "Cochera",
+          "type": "garage",
+          "x": 0.5,
+          "z": 2.6,
+          "w": 2.9,
+          "d": 4.8,
+          "h": 0.25,
+          "y": 0,
+          "color": "#aab5aa"
+        },
+        {
+          "id": "garden",
+          "name": "Jardín",
+          "type": "garden",
+          "x": -2,
+          "z": 6.2,
+          "w": 4,
+          "d": 3.2,
+          "h": 0.08,
+          "y": 0,
+          "color": "#8fa88a"
+        },
+        {
+          "id": "window1",
+          "name": "Ventanal",
+          "type": "window",
+          "x": 3.41,
+          "z": -2.6,
+          "w": 0.08,
+          "d": 3.8,
+          "h": 1.05,
+          "y": 0.8,
+          "color": "#77a8af"
+        },
+        {
+          "id": "window2",
+          "name": "Ventanal superior",
+          "type": "window",
+          "x": 2.71,
+          "z": -1.6,
+          "w": 0.08,
+          "d": 2.8000000000000003,
+          "h": 0.9,
+          "y": 3.5,
+          "color": "#83afb2"
+        }
+      ]
+    },
+    "updatedAt": "2026-11-03T19:24:27.351Z"
+  }
+}

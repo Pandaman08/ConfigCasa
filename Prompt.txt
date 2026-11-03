@@ -1,0 +1,759 @@
+# ROL Y CONTEXTO
+
+Actúa como un **arquitecto de software sénior, ingeniero de realidad virtual y aumentada, desarrollador full-stack y especialista en inteligencia artificial aplicada al diseño arquitectónico**, con experiencia en:
+
+- Desarrollo de aplicaciones web y móviles.
+- Modelado 3D paramétrico y diseño arquitectónico.
+- Realidad virtual (VR), realidad aumentada (AR) y realidad mixta (MR).
+- Integración de teléfonos Android con computadoras mediante USB.
+- Captura y procesamiento de video en tiempo real.
+- Visión por computadora, seguimiento espacial y detección de marcadores.
+- Inteligencia artificial generativa y procesamiento de lenguaje natural.
+- Desarrollo de interfaces intuitivas y experiencias inmersivas.
+- Optimización de gráficos 3D para dispositivos de recursos limitados.
+
+Tu misión es **diseñar e implementar una plataforma inteligente para una empresa inmobiliaria dedicada al diseño personalizado de viviendas**, que permita generar, visualizar, recorrer y modificar modelos arquitectónicos tridimensionales a partir de las descripciones de los clientes.
+
+La aplicación debe incorporar inteligencia artificial, realidad virtual y realidad aumentada, pero con una condición fundamental: **debe funcionar sin necesidad de comprar gafas VR, sensores externos ni equipos especializados de realidad aumentada**.
+
+Para conseguirlo, se utilizará principalmente una computadora y un teléfono Android conectado mediante cable USB.
+
+---
+
+# 1. OBJETIVO GENERAL
+
+Desarrollar una aplicación que permita a los clientes describir las características de una vivienda mediante lenguaje natural y obtener automáticamente una propuesta arquitectónica tridimensional, editable e interactiva.
+
+El usuario podrá modificar la vivienda mediante instrucciones escritas o verbales y visualizar los resultados en tiempo real o mediante un proceso de actualización claramente indicado.
+
+La aplicación deberá ofrecer tres modos principales de visualización:
+
+1. **Modo 3D convencional:** exploración desde la computadora mediante mouse y teclado.
+2. **Modo de realidad aumentada (AR):** utilización de la cámara del celular Android conectado mediante USB para combinar imágenes del entorno real con modelos arquitectónicos virtuales.
+3. **Modo de realidad virtual (VR):** visualización inmersiva de la vivienda mediante la pantalla del teléfono, utilizando un modo estereoscópico cuando sea técnicamente compatible, sin exigir gafas VR especializadas.
+
+El sistema deberá adaptar automáticamente la experiencia de visualización a las capacidades reales del dispositivo.
+
+---
+
+# 2. RESTRICCIONES TECNOLÓGICAS Y HARDWARE DISPONIBLE
+
+El desarrollo deberá considerar el siguiente entorno:
+
+**Computadora principal:**
+- Sistema operativo: Ubuntu Linux.
+- Entorno de desarrollo: Visual Studio Code.
+- Navegador: Google Chrome o Chromium.
+- Conexión USB para comunicación con el teléfono.
+- Capacidad para ejecutar el backend, frontend y motor 3D.
+
+**Dispositivo móvil:**
+- Teléfono Android.
+- Cámara trasera y frontal.
+- Pantalla táctil.
+- Conectividad USB.
+- Sensores de movimiento, cuando estén disponibles.
+- Depuración USB mediante ADB, cuando sea necesaria.
+- Posibilidad de utilizar aplicaciones auxiliares de transmisión de cámara o una aplicación Android propia.
+
+**Restricción obligatoria:**
+
+No asumir la disponibilidad de:
+- Gafas Meta Quest.
+- HTC Vive.
+- Apple Vision Pro.
+- Sensores externos de seguimiento.
+- Controladores VR especializados.
+- Cámaras de profundidad dedicadas.
+- Hardware de realidad aumentada profesional.
+
+La aplicación deberá ofrecer funcionalidades útiles con los recursos existentes.
+
+Si alguna característica requiere capacidades que el dispositivo no posee, deberá implementarse una alternativa funcional e informar claramente sus limitaciones.
+
+---
+
+# 3. FUNCIONALIDADES PRINCIPALES
+
+## Módulo 1. Gestión de clientes y proyectos
+
+Implementa las siguientes funciones:
+
+- Registro e inicio de sesión.
+- Gestión de perfiles de usuario.
+- Creación de proyectos de vivienda.
+- Registro de dimensiones del terreno.
+- Definición del presupuesto aproximado.
+- Registro de estilos arquitectónicos.
+- Historial de proyectos.
+- Guardado automático.
+- Recuperación de diseños.
+- Gestión de versiones.
+- Permisos para clientes, diseñadores y administradores.
+
+Cada proyecto deberá conservar sus requisitos, componentes arquitectónicos, modificaciones y versiones.
+
+## Módulo 2. Generación de viviendas mediante inteligencia artificial
+
+La aplicación deberá incorporar un asistente inteligente capaz de interpretar instrucciones como:
+
+"Diseña una casa moderna de dos pisos, con cuatro dormitorios, tres baños, una sala amplia, cocina americana, jardín y cochera para dos vehículos. El terreno mide 10 metros de ancho y 20 metros de largo".
+
+El sistema deberá:
+
+1. Interpretar la descripción.
+2. Identificar los requisitos arquitectónicos.
+3. Detectar información faltante.
+4. Formular preguntas cuando corresponda.
+5. Convertir la descripción en parámetros estructurados.
+6. Proponer una distribución preliminar.
+7. Generar la geometría tridimensional.
+8. Mostrar el diseño en un visor interactivo.
+9. Permitir guardar y modificar el resultado.
+
+**No utilizar imágenes generadas por IA como sustituto del modelo arquitectónico.**
+
+La vivienda deberá existir como un modelo 3D editable con dimensiones y componentes independientes.
+
+## Módulo 3. Motor arquitectónico 3D
+
+Implementa un motor de modelado paramétrico que permita representar:
+
+- Terrenos.
+- Pisos y niveles.
+- Paredes.
+- Habitaciones.
+- Puertas y ventanas.
+- Escaleras.
+- Techos.
+- Cocinas.
+- Baños.
+- Salas y dormitorios.
+- Terrazas y jardines.
+- Mobiliario.
+- Materiales y texturas.
+- Iluminación.
+
+El usuario deberá poder seleccionar, modificar, mover y personalizar componentes.
+
+Las dimensiones deberán conservar coherencia geométrica.
+
+El sistema deberá detectar superposiciones, elementos fuera de los límites del terreno y otras inconsistencias verificables.
+
+---
+
+# 4. MÓDULO ESPECIAL: REALIDAD AUMENTADA UTILIZANDO EL CELULAR POR USB
+
+Este módulo es prioritario.
+
+Desarrolla un sistema que permita utilizar la cámara de un teléfono Android conectado por USB a la computadora como fuente de video para visualizar modelos arquitectónicos superpuestos al entorno real.
+
+## 4.1. Conexión USB
+
+La aplicación deberá contemplar:
+
+- Detección del teléfono conectado.
+- Comprobación de la comunicación mediante ADB cuando corresponda.
+- Captura de video desde la cámara del celular.
+- Transmisión del video hacia la computadora.
+- Selección de cámara frontal o trasera cuando sea compatible.
+- Configuración de resolución y fotogramas por segundo.
+- Visualización de la cámara en la interfaz web.
+- Reconexión cuando se interrumpa la comunicación.
+
+Evaluar tecnologías como:
+
+- ADB.
+- scrcpy, cuando resulte útil para transmitir o controlar la pantalla.
+- Android Camera2 o CameraX.
+- OpenCV.
+- WebRTC.
+- v4l2loopback.
+- Servidores locales de video.
+- Comunicación mediante sockets o USB.
+
+No asumir que scrcpy proporciona automáticamente una cámara web o seguimiento espacial.
+
+Selecciona una arquitectura que permita acceder al video real de la cámara mediante una interfaz compatible y estable.
+
+## 4.2. Superposición de modelos arquitectónicos
+
+El usuario deberá poder:
+
+1. Conectar su teléfono Android mediante USB.
+2. Activar la cámara trasera.
+3. Visualizar la imagen de la cámara en la computadora.
+4. Seleccionar un modelo arquitectónico previamente generado.
+5. Colocar el modelo virtual sobre una superficie real.
+6. Cambiar su posición, escala y orientación.
+7. Visualizarlo desde distintos ángulos.
+8. Modificar materiales y componentes.
+9. Capturar imágenes del resultado.
+
+Implementa una solución de seguimiento espacial que sea compatible con el hardware disponible.
+
+**Primera alternativa: realidad aumentada mediante marcadores.**
+
+Utilizar tecnologías como OpenCV y marcadores ArUco o AprilTag para detectar una referencia física y calcular la posición de la cámara respecto al marcador.
+
+El modelo 3D deberá mantener una posición coherente con el marcador detectado.
+
+Esta será la alternativa prioritaria para un prototipo económico.
+
+**Segunda alternativa: AR nativa en Android.**
+
+Evaluar ARCore cuando el teléfono sea compatible y permita seguimiento espacial.
+
+En ese caso, considerar que el seguimiento y la composición de la escena se ejecuten directamente en el teléfono, mientras que la computadora gestione los proyectos, la IA y los modelos.
+
+**Tercera alternativa: visualización aumentada manual.**
+
+Si el dispositivo no soporta seguimiento espacial suficiente, permitir colocar el modelo manualmente sobre el video, indicando que se trata de una superposición visual sin seguimiento AR completo.
+
+No presentar esta alternativa como realidad aumentada con seguimiento espacial real.
+
+## 4.3. Calibración de cámara
+
+Implementa, cuando sea necesario:
+
+- Calibración de parámetros intrínsecos.
+- Corrección de distorsión.
+- Estimación de posición y orientación.
+- Alineación del sistema de coordenadas.
+- Ajuste de escala.
+- Suavizado del seguimiento.
+- Manejo de pérdida de marcadores.
+- Indicadores visuales de calidad del seguimiento.
+
+El objetivo es que el modelo se mantenga razonablemente estable durante los movimientos de la cámara.
+
+## 4.4. Rendimiento
+
+Optimiza la transmisión de video y el renderizado.
+
+Como objetivos iniciales, evaluar:
+
+- Video a 1280 × 720 píxeles.
+- Objetivo de 30 FPS en dispositivos compatibles.
+- Reducción de latencia.
+- Sincronización entre video y geometría.
+- Uso eficiente de CPU y GPU.
+- Disminución automática de calidad cuando sea necesario.
+
+Estos valores son objetivos de rendimiento, no resultados garantizados.
+
+Realiza mediciones y documenta los resultados obtenidos.
+
+---
+
+# 5. MÓDULO ESPECIAL: REALIDAD VIRTUAL SIN GAFAS VR
+
+Desarrolla una experiencia de exploración inmersiva que permita utilizar un teléfono Android sin depender de visores profesionales.
+
+La aplicación deberá ofrecer tres modalidades.
+
+## Modalidad A. Recorrido virtual 3D desde la computadora
+
+El usuario podrá:
+
+- Recorrer habitaciones en primera persona.
+- Utilizar mouse y teclado.
+- Girar la cámara.
+- Caminar virtualmente por la vivienda.
+- Subir y bajar escaleras.
+- Observar materiales y mobiliario.
+- Cambiar entre vistas interiores y exteriores.
+
+Esta modalidad deberá funcionar sin dispositivos adicionales.
+
+## Modalidad B. Recorrido virtual desde el celular
+
+El usuario podrá abrir la aplicación en su teléfono y:
+
+- Visualizar la vivienda en pantalla completa.
+- Utilizar controles táctiles.
+- Desplazarse por los ambientes.
+- Cambiar la orientación de la cámara virtual.
+- Seleccionar habitaciones.
+- Modificar materiales.
+- Consultar información del proyecto.
+
+Cuando los sensores del teléfono lo permitan, podrá utilizarse el giroscopio para controlar la orientación de la cámara virtual.
+
+## Modalidad C. Visualización VR estereoscópica
+
+Implementa un modo opcional de pantalla dividida para el ojo izquierdo y derecho.
+
+La aplicación deberá:
+
+- Renderizar dos perspectivas estereoscópicas.
+- Adaptarse a la resolución del teléfono.
+- Permitir ajustar parámetros visuales.
+- Utilizar sensores de orientación cuando estén disponibles.
+- Ofrecer controles alternativos.
+- Permitir activar o desactivar el modo estereoscópico.
+
+**Importante:** el modo estereoscópico está pensado para utilizarse con un visor pasivo económico compatible con teléfonos. Sin ese accesorio, la pantalla dividida no proporciona por sí sola una experiencia VR plenamente inmersiva.
+
+No afirmar que el teléfono por sí solo sustituye completamente a unas gafas VR.
+
+La aplicación deberá mantener disponible el recorrido virtual convencional como alternativa principal.
+
+---
+
+# 6. INTEGRACIÓN ENTRE CELULAR, COMPUTADORA Y APLICACIÓN
+
+Diseña una arquitectura que permita distribuir las tareas entre los dispositivos.
+
+## Responsabilidades de la computadora
+
+- Ejecutar el backend.
+- Gestionar la base de datos.
+- Procesar instrucciones de inteligencia artificial.
+- Administrar los proyectos.
+- Generar y modificar modelos 3D.
+- Procesar video y marcadores cuando se utilice AR basada en computadora.
+- Presentar el dashboard.
+- Generar documentación y presupuestos.
+
+## Responsabilidades del teléfono
+
+- Capturar video.
+- Mostrar escenas 3D.
+- Proporcionar datos de orientación cuando sea posible.
+- Ejecutar experiencias AR nativas si es compatible.
+- Permitir interacción táctil.
+- Actuar como pantalla de visualización inmersiva.
+
+## Comunicación
+
+Prioriza la conexión USB para el modo de captura de cámara.
+
+Evalúa:
+
+- ADB y reenvío de puertos.
+- Comunicación local HTTP.
+- WebSocket.
+- WebRTC.
+- Aplicación Android auxiliar.
+- Intercambio de datos mediante una API local.
+
+No asumir que conectar un teléfono mediante USB hace que todos los sensores y cámaras estén disponibles automáticamente.
+
+Documenta los permisos y configuraciones necesarios.
+
+La aplicación deberá detectar errores de conexión y ofrecer mensajes claros para solucionarlos.
+
+---
+
+# 7. MÓDULO DE MODIFICACIÓN INTELIGENTE DE VIVIENDAS
+
+El cliente deberá poder solicitar cambios mediante lenguaje natural.
+
+Ejemplos:
+
+- "Amplía la sala dos metros".
+- "Agrega una ventana en el dormitorio principal".
+- "Cambia la fachada a un estilo moderno".
+- "Convierte la cocina en una cocina abierta".
+- "Agrega un segundo baño".
+- "Mueve la cochera al lado derecho".
+- "Cambia el piso por porcelanato".
+- "Haz el jardín más grande".
+- "Reduce el costo de los acabados".
+
+El sistema deberá:
+
+1. Interpretar la solicitud.
+2. Identificar los componentes afectados.
+3. Determinar las operaciones geométricas.
+4. Validar las restricciones.
+5. Mostrar una vista previa cuando corresponda.
+6. Aplicar los cambios.
+7. Actualizar el modelo 3D.
+8. Actualizar las vistas de VR y AR.
+9. Guardar una nueva versión.
+10. Permitir deshacer y rehacer.
+
+No regenerar toda la vivienda cuando el cambio afecte únicamente a determinados elementos.
+
+Las modificaciones deben mantenerse sincronizadas entre los distintos modos de visualización.
+
+---
+
+# 8. INTERFAZ DE USUARIO
+
+Diseña una interfaz moderna, intuitiva y adaptable.
+
+La pantalla principal deberá contener:
+
+**Panel izquierdo:**
+- Asistente de inteligencia artificial.
+- Campo de descripción.
+- Historial de instrucciones.
+- Requisitos del proyecto.
+
+**Área central:**
+- Visor arquitectónico 3D.
+- Navegación interactiva.
+- Selección de componentes.
+- Vistas interiores y exteriores.
+
+**Panel derecho:**
+- Propiedades del elemento seleccionado.
+- Dimensiones.
+- Materiales.
+- Colores.
+- Configuraciones de iluminación.
+
+**Barra superior:**
+- Guardar.
+- Deshacer.
+- Rehacer.
+- Comparar versiones.
+- Exportar.
+- Activar modo 3D.
+- Activar modo AR.
+- Activar modo VR.
+- Conectar celular.
+
+El apartado "Conectar celular" deberá incluir:
+
+- Estado de conexión USB.
+- Detección del dispositivo.
+- Permisos necesarios.
+- Estado de la cámara.
+- Resolución.
+- FPS.
+- Modo de visualización.
+- Estado de calibración.
+- Diagnóstico de errores.
+
+La interfaz deberá estar completamente disponible en español.
+
+---
+
+# 9. ARQUITECTURA TECNOLÓGICA
+
+Propón e implementa una arquitectura basada inicialmente en:
+
+**Frontend**
+- React.
+- TypeScript.
+- Vite.
+- Three.js o Babylon.js.
+- Componentes de interfaz reutilizables.
+
+**Backend**
+- Python.
+- FastAPI.
+- Pydantic.
+- SQLAlchemy.
+- WebSocket.
+
+**Base de datos**
+- PostgreSQL.
+
+**Inteligencia artificial**
+- Modelo de lenguaje con salida estructurada.
+- API de IA configurable.
+- Validación de instrucciones mediante esquemas.
+- Motor de operaciones geométricas.
+
+**Motor 3D**
+- Three.js o Babylon.js.
+- Geometría paramétrica.
+- Formatos GLB/glTF.
+- Sistema de coordenadas consistente.
+- Componentes arquitectónicos editables.
+
+**Visión por computadora**
+- OpenCV.
+- ArUco o AprilTag.
+- Calibración de cámara.
+- Estimación de pose.
+- Seguimiento de marcadores.
+
+**Integración Android**
+- ADB.
+- CameraX o Camera2, cuando se requiera aplicación nativa.
+- scrcpy como herramienta auxiliar cuando sea apropiado.
+- v4l2loopback cuando sea útil.
+- WebRTC o WebSocket para comunicación.
+
+**Realidad virtual**
+- Renderizado estereoscópico.
+- Sensores de orientación.
+- WebXR en entornos compatibles.
+- Recorrido virtual convencional como alternativa.
+
+**Realidad aumentada**
+- AR basada en marcadores como primera implementación.
+- ARCore como integración opcional según compatibilidad.
+- Composición de video y objetos virtuales.
+
+**Despliegue**
+- Docker Compose para servicios compatibles.
+- Configuración local para Ubuntu.
+- Archivos de entorno.
+- Scripts de instalación.
+- Documentación de dependencias.
+
+Justifica la elección de cada tecnología y evita incorporar herramientas innecesarias.
+
+---
+
+# 10. REQUISITOS DE SEGURIDAD
+
+Implementa:
+
+- Autenticación.
+- Control de acceso por roles.
+- Validación de entradas.
+- Protección de datos de clientes.
+- Almacenamiento seguro de credenciales.
+- Protección de archivos de proyectos.
+- Historial de modificaciones.
+- Manejo seguro de conexiones locales.
+- Validación de operaciones generadas por IA.
+- Registro de errores.
+- Protección frente a instrucciones maliciosas.
+- Gestión segura de permisos de cámara.
+
+La aplicación no deberá acceder a la cámara sin autorización del usuario.
+
+---
+
+# 11. FASES DE DESARROLLO
+
+Desarrolla el proyecto de forma incremental.
+
+## Fase 1. Análisis y diseño
+
+- Definir requisitos.
+- Identificar actores.
+- Crear casos de uso.
+- Diseñar la arquitectura.
+- Definir el modelo de datos.
+- Identificar riesgos técnicos.
+- Verificar la viabilidad del uso del teléfono por USB.
+
+## Fase 2. Aplicación base
+
+- Implementar frontend.
+- Implementar backend.
+- Configurar PostgreSQL.
+- Crear autenticación.
+- Implementar gestión de proyectos.
+
+## Fase 3. Motor de generación 3D
+
+- Crear geometrías arquitectónicas básicas.
+- Implementar habitaciones y paredes.
+- Crear puertas y ventanas.
+- Implementar navegación 3D.
+- Permitir guardar modelos.
+
+## Fase 4. Inteligencia artificial
+
+- Integrar un modelo de lenguaje.
+- Interpretar requisitos.
+- Convertir descripciones en operaciones geométricas.
+- Generar propuestas.
+- Modificar modelos existentes.
+- Mantener historial de cambios.
+
+## Fase 5. Integración del celular mediante USB
+
+- Detectar el dispositivo Android.
+- Configurar la comunicación.
+- Acceder a la cámara.
+- Transmitir video.
+- Visualizar el video en la computadora.
+- Medir latencia y rendimiento.
+- Manejar errores y desconexiones.
+
+## Fase 6. Realidad aumentada
+
+- Implementar detección de marcadores.
+- Calibrar la cámara.
+- Estimar posición y orientación.
+- Superponer modelos 3D.
+- Sincronizar movimientos.
+- Ajustar escala y posición.
+- Evaluar estabilidad del seguimiento.
+
+## Fase 7. Realidad virtual
+
+- Implementar recorridos en primera persona.
+- Crear visualización móvil.
+- Integrar sensores de orientación cuando estén disponibles.
+- Implementar modo estereoscópico opcional.
+- Optimizar gráficos.
+
+## Fase 8. Personalización y documentación
+
+- Crear catálogo de materiales.
+- Implementar modificaciones visuales.
+- Generar planos preliminares.
+- Crear presupuestos estimados.
+- Exportar documentación.
+
+## Fase 9. Pruebas
+
+- Pruebas unitarias.
+- Pruebas de integración.
+- Pruebas de geometría.
+- Pruebas de generación mediante IA.
+- Pruebas de comunicación USB.
+- Pruebas de captura de video.
+- Pruebas de seguimiento AR.
+- Pruebas de visualización VR.
+- Pruebas de rendimiento.
+- Pruebas de usabilidad.
+
+## Fase 10. Documentación y entrega
+
+- Código fuente completo.
+- Instrucciones de instalación.
+- README.
+- Documentación técnica.
+- Manual de usuario.
+- Diagramas de arquitectura.
+- Modelo entidad-relación.
+- Documentación de API.
+- Scripts de ejecución.
+- Evidencias de pruebas.
+- Limitaciones conocidas.
+
+---
+
+# 12. ESCENARIO DE DEMOSTRACIÓN OBLIGATORIO
+
+La aplicación deberá permitir demostrar el siguiente flujo:
+
+**Paso 1.**
+
+El cliente ingresa a la aplicación desde Ubuntu.
+
+**Paso 2.**
+
+Escribe:
+
+"Diseña una casa moderna de dos pisos sobre un terreno de 10 × 20 metros, con tres dormitorios, dos baños, sala, comedor, cocina abierta, cochera y jardín".
+
+**Paso 3.**
+
+La aplicación interpreta la solicitud y genera un modelo 3D preliminar editable.
+
+**Paso 4.**
+
+El usuario explora el modelo con mouse y teclado.
+
+**Paso 5.**
+
+Solicita:
+
+"Amplía la cocina y agrega una isla central".
+
+**Paso 6.**
+
+La aplicación actualiza el modelo sin perder las demás habitaciones.
+
+**Paso 7.**
+
+El usuario conecta su celular Android mediante USB.
+
+**Paso 8.**
+
+La aplicación detecta el teléfono y establece una conexión para recibir el video de su cámara.
+
+**Paso 9.**
+
+El usuario coloca un marcador impreso sobre una mesa.
+
+**Paso 10.**
+
+La cámara identifica el marcador y la aplicación muestra una maqueta virtual de la vivienda sobre él.
+
+**Paso 11.**
+
+El usuario mueve la cámara y observa la vivienda desde diferentes ángulos, manteniendo el modelo alineado con el marcador mientras el seguimiento sea válido.
+
+**Paso 12.**
+
+El usuario cambia los materiales de la fachada y observa el resultado actualizado.
+
+**Paso 13.**
+
+Activa el modo de recorrido virtual y explora el interior de la vivienda.
+
+**Paso 14.**
+
+Guarda el proyecto y exporta una ficha preliminar.
+
+Este escenario deberá utilizarse como referencia principal para las pruebas de aceptación.
+
+---
+
+# 13. CRITERIOS DE ACEPTACIÓN
+
+La primera versión funcional deberá demostrar:
+
+1. Generación de una vivienda 3D básica a partir de requisitos.
+2. Modelo editable con dimensiones identificables.
+3. Navegación interactiva.
+4. Modificación mediante lenguaje natural.
+5. Persistencia de proyectos.
+6. Historial de versiones.
+7. Detección del teléfono Android por USB.
+8. Captura de video desde su cámara.
+9. Visualización del video en la computadora.
+10. Detección de un marcador físico.
+11. Superposición de un modelo arquitectónico sobre el marcador.
+12. Actualización de materiales en el modelo.
+13. Recorrido virtual en primera persona.
+14. Visualización desde el celular.
+15. Exportación de una ficha preliminar del proyecto.
+
+No considerar completada una funcionalidad sin una prueba verificable.
+
+---
+
+# 14. INSTRUCCIONES OBLIGATORIAS
+
+- Implementa software real y ejecutable.
+- No te limites a explicaciones teóricas.
+- No sustituyas el modelo 3D por imágenes.
+- No afirmes que una webcam proporciona seguimiento AR por sí sola.
+- No afirmes que una pantalla dividida equivale a unas gafas VR completas.
+- Prioriza herramientas gratuitas y de código abierto.
+- Aprovecha el teléfono Android disponible.
+- Evita dependencias de hardware especializado.
+- Mantén el código modular y documentado.
+- Utiliza buenas prácticas de ingeniería de software.
+- Verifica la compatibilidad de las herramientas antes de integrarlas.
+- No inventes resultados de pruebas.
+- Implementa alternativas cuando una tecnología no sea compatible.
+- Prioriza la estabilidad del sistema y la facilidad de uso.
+- Mantén sincronizados los modelos entre los modos 3D, AR y VR.
+- Permite que el sistema evolucione hacia una solución empresarial.
+
+# 15. INSTRUCCIÓN DE INICIO
+
+Antes de escribir código, realiza un análisis de viabilidad técnica considerando específicamente:
+
+1. Ubuntu Linux como sistema principal.
+2. Un teléfono Android conectado mediante USB.
+3. Captura de video desde la cámara del teléfono.
+4. Realidad aumentada mediante marcadores físicos.
+5. Realidad virtual mediante recorridos 3D y visualización móvil.
+6. Generación de modelos arquitectónicos editables mediante IA.
+7. Modificación de componentes mediante lenguaje natural.
+8. Uso de tecnologías gratuitas y de código abierto.
+
+Identifica qué funcionalidades pueden implementarse directamente, cuáles requieren una aplicación Android auxiliar y cuáles dependen de las capacidades del teléfono.
+
+Define el producto mínimo viable (MVP), los riesgos y las dependencias.
+
+**Comienza desarrollando la Fase 1 y establece un plan de implementación técnicamente viable. Después, avanza por fases hasta obtener una aplicación funcional y verificable.**

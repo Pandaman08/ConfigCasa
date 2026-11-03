@@ -1,0 +1,2 @@
+# Opcional: habilita detección y pose ArUco en camera_bridge.py
+opencv-contrib-python-headless>=4.11,<5

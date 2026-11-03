@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+data/casalab.sqlite3
+data/casalab.sqlite3-shm
+data/casalab.sqlite3-wal
+data/calibration.json
